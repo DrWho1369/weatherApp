@@ -1,7 +1,7 @@
 import tkinter as tk
 import requests
 import time
-
+import config
 
 def getWeather(canvas):
     latitude_and_longitude = textfield.get()
@@ -10,7 +10,7 @@ def getWeather(canvas):
     latitude = latitude_raw.strip()
     longitude_raw = latitude_and_longitude_list[1]
     longitude = longitude_raw.strip()
-    api = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=cdff13d48c1ee8584b1173383a7f5341"
+    api = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&" + config.api_key
     json_data = requests.get(api).json()
     condition = json_data['weather'][0]['main']
     temp = int(json_data['main']['temp'] - 273.15)
